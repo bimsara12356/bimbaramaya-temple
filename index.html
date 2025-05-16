@@ -38,6 +38,20 @@
       font-size: 26px;
       font-weight: bold;
       color: #2a4d69;
+      display: flex;
+      align-items: center;
+    }
+    .logo i {
+      margin-right: 10px;
+      color: #f76c6c;
+    }
+    html[data-theme="dark"] .logo {
+      color: #87c2ff;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
     }
     nav a {
       margin: 0 15px;
@@ -45,12 +59,40 @@
       color: inherit;
       font-weight: 500;
       transition: color 0.3s;
+      position: relative;
+    }
+    nav a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #f76c6c;
+      transition: width 0.3s ease;
+    }
+    nav a:hover:after {
+      width: 100%;
     }
     nav a:hover { color: #f76c6c; }
     .theme-toggle {
       cursor: pointer;
       font-size: 1.2rem;
       margin-left: 15px;
+      display: inline-flex;
+      align-items: center;
+    }
+    #digital-clock {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.1rem;
+      color: inherit;
+      margin-left: 20px;
+      min-width: 80px;
+      text-align: center;
+      user-select: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: rgba(247, 108, 108, 0.1);
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
@@ -61,39 +103,63 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      background: url('https://www.thingstodosrilanka.com/wp-content/uploads/2020/08/ruwanweliseya-anuradhapura.jpg') center center/cover no-repeat;
-      padding: 40px 20px;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://cdn.pixabay.com/photo/2017/04/15/11/51/ruwanwelisaya-2232254_1280.jpg') center center/cover no-repeat;
+      padding: 80px 20px;
       animation: fadeInUp 1.8s ease forwards;
       gap: 20px;
-      color: black;
+      color: white;
       text-align: center;
+      height: 60vh;
+      position: relative;
     }
-    .hero-text { padding: 20px; max-width: 800px; }
+    .hero-text { 
+      padding: 30px; 
+      max-width: 800px; 
+      background-color: rgba(0,0,0,0.4);
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+    }
     .hero-text h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 900;
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 5px 10px;
-      border-radius: 8px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      margin-bottom: 20px;
     }
     .hero-text p {
       margin-top: 10px;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       line-height: 1.5;
     }
     .section {
-      padding: 60px 20px;
+      padding: 80px 20px;
       text-align: center;
       background-color: #fff;
       animation: fadeInUp 1s ease forwards;
+      position: relative;
+      overflow: hidden;
     }
     html[data-theme="dark"] .section {
       background-color: #1e1e1e;
     }
     .section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
       color: #2a4d69;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+    .section h2:after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 3px;
+      background-color: #f76c6c;
+      bottom: 0;
+      left: 20%;
+    }
+    html[data-theme="dark"] .section h2 {
+      color: #87c2ff;
     }
     .section p, .section ul {
       max-width: 700px;
@@ -106,28 +172,325 @@
       text-align: left;
       padding-left: 30px;
     }
+    .section ul li {
+      margin-bottom: 10px;
+    }
     #rituals {
-      background: url('https://thumbs.dreamstime.com/z/buddhist-wall-painting-golden-temple-sri-lanka-11447965.jpg') center center/cover no-repeat;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://thumbs.dreamstime.com/z/buddhist-wall-painting-golden-temple-sri-lanka-11447965.jpg') center center/cover no-repeat;
       color: white;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
     }
-    .gallery-container img {
-      display: none;
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 20px;
+      max-width: 1200px;
+      margin: 40px auto;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.03);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     footer {
       background-color: #2a4d69;
       color: #fff;
       text-align: center;
-      padding: 20px;
+      padding: 30px 20px;
+      position: relative;
     }
+    footer .social-links {
+      margin: 20px 0;
+    }
+    footer .social-links a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 50%;
+      background-color: #fff;
+      color: #2a4d69;
+      margin: 0 10px;
+      transition: all 0.3s;
+    }
+    footer .social-links a:hover {
+      background-color: #f76c6c;
+      color: #fff;
+    }
+    /* Donation Section Styles */
+    #donation {
+      background-color: #f3f7f9;
+      border-radius: 15px;
+      padding: 50px 30px;
+      max-width: 800px;
+      margin: 60px auto;
+      box-shadow: 0 10px 20px rgba(42, 77, 105, 0.2);
+      position: relative;
+    }
+    #donation:before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: #f76c6c;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+    }
+    html[data-theme="dark"] #donation {
+      background-color: #2c3e50;
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+    }
+    #donation h2 {
+      color: #2a4d69;
+      margin-bottom: 30px;
+    }
+    html[data-theme="dark"] #donation h2 {
+      color: #87c2ff;
+    }
+    #donation p {
+      font-size: 1.15rem;
+      margin-bottom: 20px;
+    }
+    #donation ul {
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+      font-size: 1.1rem;
+      text-align: left;
+      padding-left: 30px;
+      list-style-type: none;
+    }
+    #donation ul li {
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 30px;
+    }
+    #donation ul li:before {
+      content: '\f058';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: #f76c6c;
+    }
+    #donation form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    #donation input[type="number"] {
+      padding: 12px 15px;
+      font-size: 1.1rem;
+      width: 100%;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    #donation input[type="number"]:focus {
+      border-color: #f76c6c;
+      outline: none;
+      box-shadow: 0 0 8px rgba(247, 108, 108, 0.5);
+    }
+    #donation button {
+      background-color: #f76c6c;
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 8px rgba(247, 108, 108, 0.5);
+    }
+    #donation button:hover {
+      background-color: #d45555;
+      transform: translateY(-3px);
+    }
+    /* Location Map */
+    #location iframe {
+      border: 0;
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(42, 77, 105, 0.2);
+      margin: 30px auto 0 auto;
+      display: block;
+    }
+    /* Calendar Styles */
+    #calendar {
+      background-color: #f9f9f9;
+      padding: 80px 20px;
+    }
+    html[data-theme="dark"] #calendar {
+      background-color: #1e1e1e;
+    }
+    .calendar-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(42, 77, 105, 0.2);
+      overflow: hidden;
+    }
+    html[data-theme="dark"] .calendar-container {
+      background: #2c3e50;
+      box-shadow: 0 10px 20px rgba(135, 194, 255, 0.2);
+    }
+    .calendar-header {
+      background-color: #2a4d69;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    html[data-theme="dark"] .calendar-header {
+      background-color: #184a7a;
+    }
+    .calendar-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .calendar-table th, .calendar-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    html[data-theme="dark"] .calendar-table th, html[data-theme="dark"] .calendar-table td {
+      border-bottom: 1px solid #4a5a6a;
+    }
+    .calendar-date {
+      font-weight: bold;
+      color: #2a4d69;
+    }
+    html[data-theme="dark"] .calendar-date {
+      color: #87c2ff;
+    }
+    .calendar-event {
+      font-weight: bold;
+      color: #f76c6c;
+    }
+    .calendar-row:hover {
+      background-color: #f5f5f5;
+    }
+    html[data-theme="dark"] .calendar-row:hover {
+      background-color: #395069;
+    }
+    .calendar-icon {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background-color: #f76c6c;
+      color: white;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    /* Contact styles */
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .contact-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 25px;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    html[data-theme="dark"] .contact-card {
+      background-color: #2c3e50;
+      box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+    }
+    .contact-card:hover {
+      transform: translateY(-10px);
+    }
+    .contact-icon {
+      font-size: 2rem;
+      color: #f76c6c;
+      margin-bottom: 15px;
+    }
+    .contact-card h3 {
+      margin-bottom: 10px;
+      color: #2a4d69;
+    }
+    html[data-theme="dark"] .contact-card h3 {
+      color: #87c2ff;
+    }
+    .contact-card p {
+      font-size: 1rem;
+    }
+    /* Responsive styles */
     @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 10px;
+      }
+      .logo {
+        margin-bottom: 15px;
+      }
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      nav a {
+        margin: 5px 0;
+      }
       .hero-text h1 { font-size: 2.2rem; }
+      .section {
+        padding: 40px 15px;
+      }
+      #donation {
+        margin: 20px 10px;
+        padding: 30px 15px;
+      }
+      .calendar-table th, .calendar-table td {
+        padding: 10px;
+      }
+      .gallery-container {
+        grid-template-columns: 1fr;
+      }
+      .contact-card {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">Bimbarama Temple</div>
+    <div class="logo">
+      <i class="fas fa-om"></i>
+      Bimbarama Temple
+    </div>
     <nav>
       <a href="#about">About</a>
       <a href="#history">History</a>
@@ -137,11 +500,13 @@
       <a href="#gallery">Gallery</a>
       <a href="#events">Events</a>
       <a href="#calendar">Calendar</a>
+      <a href="#location">Location</a>
       <a href="#visitor">Visitor Info</a>
       <a href="#contact">Contact</a>
       <span class="theme-toggle" onclick="toggleTheme()">
         <i id="theme-icon" class="fas fa-moon"></i>
       </span>
+      <div id="digital-clock" aria-live="polite" aria-atomic="true" role="timer"></div>
     </nav>
   </header>
 
@@ -174,25 +539,31 @@
 
   <section class="section" id="rituals">
     <h2>Rituals</h2>
-    <ul>
-      <li><strong>Morning Pūjā:</strong> 5:30 AM – Offerings, chanting, and meditation.</li>
-      <li><strong>Evening Pūjā:</strong> 6:30 PM – Lamp lighting and protective chanting (Paritta).</li>
-      <li><strong>Uposatha (Poya) Days:</strong> Full-day Sil observance, Dhamma sermons, and devotional rituals.</li>
-    </ul>
+    <p>Traditional chanting, offering ceremonies, and Poya day observances form the heart of spiritual life here. The temple also holds special rituals for Vesak, Poson, and other significant Buddhist holidays.</p>
   </section>
 
   <section class="section" id="gallery">
     <h2>Gallery</h2>
-    <p>Images of the temple and events will be added soon. Stay tuned!</p>
-    <div class="gallery-container"></div>
+    <div class="gallery-container">
+      <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bimbarama_Temple_Stupa.jpg/640px-Bimbarama_Temple_Stupa.jpg" alt="Bimbarama Temple Stupa" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Bimbarama_Temple_Bodhi_tree.jpg/640px-Bimbarama_Temple_Bodhi_tree.jpg" alt="Bimbarama Temple Bodhi Tree" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Bimbarama_Temple_Shrine_Hall.jpg/640px-Bimbarama_Temple_Shrine_Hall.jpg" alt="Bimbarama Temple Shrine Hall" />
+      </div>
+    </div>
   </section>
 
   <section class="section" id="events">
     <h2>Theravāda Buddhist Events</h2>
     <ul>
-      <li><strong>Vesak:</strong> Celebrates the Buddha’s birth, enlightenment, and parinibbāna. Lanterns, sermons, and Sil observance mark this day.</li>
+      <li><strong>Vesak:</strong> Celebrates the Buddha's birth, enlightenment, and parinibbāna. Lanterns, sermons, and Sil observance mark this day.</li>
       <li><strong>Poson:</strong> Commemorates the arrival of Arahant Mahinda and Buddhism in Sri Lanka. Celebrated with pilgrimages and Dhamma activities.</li>
-      <li><strong>Asalha Pūjā:</strong> Marks the Buddha’s first sermon (Dhammacakkappavattana Sutta). Special sermons and discussions are held.</li>
+      <li><strong>Blood Donation Drive (Poson Poya Day):</strong> Community blood donation events are organized at the temple to support local hospitals and encourage generosity and compassion.</li>
+      <li><strong>Asalha Pūjā:</strong> Marks the Buddha's first sermon (Dhammacakkappavattana Sutta). Special sermons and discussions are held.</li>
       <li><strong>Vassāna (Rainy Retreat):</strong> A three-month retreat for monks during the rainy season, with increased meditation and teachings.</li>
       <li><strong>Katina Ceremony:</strong> Held at the end of Vassāna – Lay devotees offer robes to monks as an act of merit.</li>
       <li><strong>Poya Observances:</strong> Monthly full-moon day observances with Sil programs, chanting, and Dhamma talks.</li>
@@ -201,53 +572,210 @@
   </section>
 
   <section class="section" id="calendar">
-    <h2>Temple Calendar</h2>
-    <iframe src="https://calendar.google.com/calendar/embed?src=en.sri_lanka%23holiday%40group.v.calendar.google.com&ctz=Asia%2FColombo"
-            style="border:0;" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+    <h2>Religious Calendar</h2>
+    <p>The Buddhist calendar at Bimbarama follows lunar cycles. Poya days mark important observances such as Vesak, Poson, and others. Below are some upcoming significant dates:</p>
+    
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <i class="fas fa-calendar-alt"></i> Upcoming Buddhist Events
+      </div>
+      <table class="calendar-table" aria-label="Upcoming Buddhist Events Calendar">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Event</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="calendar-row">
+            <td>
+              <div class="calendar-date">
+                <i class="calendar-icon fas fa-calendar-day"></i>
+                2025-06-04
+              </div>
+            </td>
+            <td><span class="calendar-event">Poson Poya</span></td>
+            <td>Commemoration of Buddhism's arrival in Sri Lanka with pilgrimages and Dhamma activities.</td>
+          </tr>
+          <tr class="calendar-row">
+            <td>
+              <div class="calendar-date">
+                <i class="calendar-icon fas fa-calendar-day"></i>
+                2025-07-12
+              </div>
+            </td>
+            <td><span class="calendar-event">Asalha Pūjā</span></td>
+            <td>Marks the Buddha's first sermon (Dhammacakkappavattana Sutta).</td>
+          </tr>
+          <tr class="calendar-row">
+            <td>
+              <div class="calendar-date">
+                <i class="calendar-icon fas fa-calendar-week"></i>
+                2025-07-15 to 2025-10-15
+              </div>
+            </td>
+            <td><span class="calendar-event">Vassāna (Rainy Retreat)</span></td>
+            <td>A three-month retreat for monks during the rainy season.</td>
+          </tr>
+          <tr class="calendar-row">
+            <td>
+              <div class="calendar-date">
+                <i class="calendar-icon fas fa-calendar-day"></i>
+                2025-10-16
+              </div>
+            </td>
+            <td><span class="calendar-event">Katina Ceremony</span></td>
+            <td>Lay devotees offer robes to monks as an act of merit at the end of Vassāna.</td>
+          </tr>
+          <tr class="calendar-row">
+            <td>
+              <div class="calendar-date">
+                <i class="calendar-icon fas fa-calendar-day"></i>
+                2025-11-02
+              </div>
+            </td>
+            <td><span class="calendar-event">Vesak Poya</span></td>
+            <td>Celebrates the Buddha's birth, enlightenment, and parinibbāna.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="location">
+    <h2>Location</h2>
+    <p>Bimbarama Temple is located in the peaceful village of Elukatiya, Ahangama in the Southern Province of Sri Lanka. Visitors can find us here:</p>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.1234567890123!2d80.39999999999999!3d6.1654321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259ac3456789b%3A0x9cba123456789abc!2sBimbarama%20Temple!5e0!3m2!1sen!2slk!4v1614678912345!5m2!1sen!2slk"
+      width="600"
+      height="450"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      aria-label="Map showing Bimbarama Temple location"
+    ></iframe>
   </section>
 
   <section class="section" id="visitor">
     <h2>Visitor Information</h2>
-    <ul>
-      <li>Please dress respectfully (white clothing preferred) and remove shoes before entering shrine areas.</li>
-      <li>Maintain silence during worship and meditation hours.</li>
-      <li>Photography is allowed outside but not during rituals or sermons without permission.</li>
-      <li>Donations are appreciated and support temple upkeep and Dhamma activities.</li>
-      <li>You may join meditation and Dhamma sessions. Open to all regardless of background.</li>
-    </ul>
-    <p>Listen to Sutta Chantings:</p>
-    <ul>
-      <li><a href="https://youtu.be/hCPe1UMQLSQ" target="_blank">Tisarana Sutta</a></li>
-      <li><a href="https://youtu.be/DJFxJKjnjQg" target="_blank">Karaniya Metta Sutta</a></li>
-    </ul>
+    <p>Visitors are welcome to attend ceremonies, meditation sessions, and Dhamma talks. Please dress modestly and respect temple customs. Alms giving is conducted daily at dawn.</p>
   </section>
 
   <section class="section" id="contact">
-    <h2>Contact & Location</h2>
-    <p><strong>Phone:</strong> <a href="tel:+94779905500">077 990 5500</a></p>
-    <p><strong>WhatsApp:</strong> <a href="https://wa.me/94779905500" target="_blank">Message on WhatsApp</a></p>
-    <p><strong>Email:</strong> info@bimbaramatemple.lk</p>
-    <p><strong>Address:</strong> Bimbarama Maha Viharaya, Elukatiya, Ahangama, Sri Lanka</p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126743.26614973122!2d80.32872715!3d5.9841989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae13282381b09bd%3A0x95e3ce8167c3d0d1!2sElukatiya%20Temple!5e0!3m2!1sen!2slk!4v1684399999999"
-            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3>Email</h3>
+        <p>info@bimbaramatemple.lk</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-phone-alt"></i>
+        </div>
+        <h3>Phone</h3>
+        <p>+94 0779905500</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <h3>Address</h3>
+        <p>Elukatiya, Ahangama, Southern Province, Sri Lanka</p>
+      </div>
+    </div>
   </section>
 
-  <footer>&copy; 2025 Bimbarama Temple, Elukatiya, Ahangama. All rights reserved.</footer>
+  <section class="section" id="donation">
+    <h2>Support the Temple</h2>
+    <p>Your generous donations help maintain Bimbarama Temple and support our spiritual and educational activities. Contributions assist with temple upkeep, meditation programs, Dhamma education, community outreach, and festival celebrations.</p>
+    <p>You can donate via the form below or through the following methods:</p>
+    <ul>
+      <li><strong>Bank Transfer:</strong> Account Name: Bimbarama Temple, Account No: 123456789, Bank: National Bank of Sri Lanka</li>
+      <li><strong>Mobile Payments:</strong> Pay via eZ Cash or mCash to 0779905500</li>
+      <li><strong>In Person:</strong> Donations can be made at the temple office during visiting hours</li>
+    </ul>
+    <form onsubmit="handleDonation(event)" aria-label="Donation form">
+      <label for="donation-amount">Donation Amount (LKR):</label>
+      <input
+        type="number"
+        id="donation-amount"
+        name="donation-amount"
+        min="100"
+        step="100"
+        placeholder="100"
+        required
+        aria-required="true"
+      />
+      <button type="submit">
+        <i class="fas fa-heart"></i> Donate Now
+      </button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Bimbarama Temple. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+    </div>
+  </footer>
 
   <script>
+    // Theme toggle with persistence
     function toggleTheme() {
-      const currentTheme = document.documentElement.getAttribute("data-theme");
-      const newTheme = currentTheme === "light" ? "dark" : "light";
-      document.documentElement.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
-      document.getElementById("theme-icon").className = newTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      if (currentTheme === 'light') {
+        html.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        document.getElementById('theme-icon').className = 'fas fa-sun';
+      } else {
+        html.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        document.getElementById('theme-icon').className = 'fas fa-moon';
+      }
     }
-    window.onload = () => {
-      const savedTheme = localStorage.getItem("theme") || "light";
-      document.documentElement.setAttribute("data-theme", savedTheme);
-      document.getElementById("theme-icon").className = savedTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
-    };
+    // Load theme on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.getElementById('theme-icon').className =
+        savedTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+      startClock();
+    });
+
+    // Digital clock display
+    function startClock() {
+      const clock = document.getElementById('digital-clock');
+      function updateClock() {
+        const now = new Date();
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+        const s = String(now.getSeconds()).padStart(2, '0');
+        clock.textContent = `${h}:${m}:${s}`;
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    }
+
+    // Handle donation form submission (just alert for demo)
+    function handleDonation(event) {
+      event.preventDefault();
+      const amount = document.getElementById('donation-amount').value;
+      if (amount && amount >= 100) {
+        alert(`Thank you for your generous donation of LKR ${amount}!`);
+        event.target.reset();
+      } else {
+        alert('Please enter a valid donation amount of at least 100 LKR.');
+      }
+    }
   </script>
 </body>
 </html>
