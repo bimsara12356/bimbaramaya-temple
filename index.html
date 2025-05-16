@@ -1,507 +1,259 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bimbarama Temple - Elukatiya, Ahangama</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    :root {
+      --body-bg: #f9f9f9; --text-color: #333; --header-bg: #fff;
+      --section-bg: #fff; --donation-bg: #f3f7f9; --title-color: #2a4d69;
+      --logo-color: #2a4d69; --accent-color: #f76c6c;
+      --box-shadow: 0 2px 4px rgba(0,0,0,0.1); --border-color: #eee;
+    }
+    [data-theme="dark"] {
+      --body-bg: #121212; --text-color: #f0f0f0; --header-bg: #1e1e1e;
+      --section-bg: #1e1e1e; --donation-bg: #2c3e50; --title-color: #87c2ff;
+      --logo-color: #87c2ff; --box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+      --border-color: #4a5a6a;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      scroll-behavior: smooth;
+      font-family: 'Segoe UI', sans-serif; background-color: var(--body-bg);
+      color: var(--text-color); scroll-behavior: smooth;
       transition: background 0.3s, color 0.3s;
     }
-    html[data-theme="light"] body {
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    html[data-theme="dark"] body {
-      background-color: #121212;
-      color: #f0f0f0;
-    }
     header {
-      background: var(--header-bg, #fff);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    html[data-theme="dark"] header {
-      background: #1e1e1e;
+      background: var(--header-bg); box-shadow: var(--box-shadow);
+      padding: 15px 30px; display: flex; justify-content: space-between;
+      align-items: center; position: sticky; top: 0; z-index: 1000;
     }
     .logo {
-      font-size: 26px;
-      font-weight: bold;
-      color: #2a4d69;
-      display: flex;
-      align-items: center;
+      font-size: 26px; font-weight: bold; color: var(--logo-color);
+      display: flex; align-items: center;
     }
-    .logo i {
-      margin-right: 10px;
-      color: #f76c6c;
-    }
-    html[data-theme="dark"] .logo {
-      color: #87c2ff;
-    }
-    nav {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+    .logo i { margin-right: 10px; color: var(--accent-color); }
+    nav { display: flex; align-items: center; flex-wrap: wrap; }
     nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: inherit;
-      font-weight: 500;
-      transition: color 0.3s;
-      position: relative;
+      margin: 0 15px; text-decoration: none; color: inherit;
+      font-weight: 500; transition: color 0.3s; position: relative;
     }
     nav a:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background-color: #f76c6c;
+      content: ''; position: absolute; width: 0; height: 2px;
+      bottom: -5px; left: 0; background-color: var(--accent-color);
       transition: width 0.3s ease;
     }
-    nav a:hover:after {
-      width: 100%;
-    }
-    nav a:hover { color: #f76c6c; }
+    nav a:hover:after { width: 100%; }
+    nav a:hover { color: var(--accent-color); }
     .theme-toggle {
-      cursor: pointer;
-      font-size: 1.2rem;
-      margin-left: 15px;
-      display: inline-flex;
-      align-items: center;
+      cursor: pointer; font-size: 1.2rem; margin-left: 15px;
+      display: inline-flex; align-items: center;
     }
     #digital-clock {
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 1.1rem;
-      color: inherit;
-      margin-left: 20px;
-      min-width: 80px;
-      text-align: center;
-      user-select: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      background-color: rgba(247, 108, 108, 0.1);
+      font-family: monospace; font-size: 1.1rem; color: inherit;
+      margin-left: 20px; min-width: 80px; text-align: center;
+      user-select: none; padding: 5px 10px; border-radius: 5px;
+      background-color: rgba(247,108,108,0.1);
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://cdn.pixabay.com/photo/2017/04/15/11/51/ruwanwelisaya-2232254_1280.jpg') center center/cover no-repeat;
-      padding: 80px 20px;
-      animation: fadeInUp 1.8s ease forwards;
-      gap: 20px;
-      color: white;
-      text-align: center;
-      height: 60vh;
-      position: relative;
+      display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: center; color: white; text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), 
+                url('https://cdn.pixabay.com/photo/2017/04/15/11/51/ruwanwelisaya-2232254_1280.jpg') center/cover;
+      padding: 80px 20px; animation: fadeInUp 1.8s ease forwards;
+      gap: 20px; height: 60vh;
     }
     .hero-text { 
-      padding: 30px; 
-      max-width: 800px; 
-      background-color: rgba(0,0,0,0.4);
-      border-radius: 15px;
+      padding: 30px; max-width: 800px; 
+      background-color: rgba(0,0,0,0.4); border-radius: 15px;
       backdrop-filter: blur(5px);
     }
     .hero-text h1 {
-      font-size: 3.5rem;
-      font-weight: 900;
+      font-size: 3.5rem; font-weight: 900; margin-bottom: 20px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-      margin-bottom: 20px;
     }
-    .hero-text p {
-      margin-top: 10px;
-      font-size: 1.5rem;
-      line-height: 1.5;
-    }
+    .hero-text p { margin-top: 10px; font-size: 1.5rem; line-height: 1.5; }
     .section {
-      padding: 80px 20px;
-      text-align: center;
-      background-color: #fff;
-      animation: fadeInUp 1s ease forwards;
-      position: relative;
+      padding: 80px 20px; text-align: center; position: relative;
+      background-color: var(--section-bg); animation: fadeInUp 1s ease forwards;
       overflow: hidden;
-    }
-    html[data-theme="dark"] .section {
-      background-color: #1e1e1e;
     }
     .section h2 {
-      font-size: 2.2rem;
-      margin-bottom: 30px;
-      color: #2a4d69;
-      position: relative;
-      display: inline-block;
-      padding-bottom: 10px;
+      font-size: 2.2rem; margin-bottom: 30px; color: var(--title-color);
+      position: relative; display: inline-block; padding-bottom: 10px;
     }
     .section h2:after {
-      content: '';
-      position: absolute;
-      width: 60%;
-      height: 3px;
-      background-color: #f76c6c;
-      bottom: 0;
-      left: 20%;
-    }
-    html[data-theme="dark"] .section h2 {
-      color: #87c2ff;
+      content: ''; position: absolute; width: 60%; height: 3px;
+      background-color: var(--accent-color); bottom: 0; left: 20%;
     }
     .section p, .section ul {
-      max-width: 700px;
-      margin: 0 auto 20px auto;
-      font-size: 1.15rem;
-      line-height: 1.7;
+      max-width: 700px; margin: 0 auto 20px; font-size: 1.15rem; line-height: 1.7;
     }
     .section ul {
-      list-style-type: disc;
-      text-align: left;
-      padding-left: 30px;
+      list-style-type: disc; text-align: left; padding-left: 30px;
     }
-    .section ul li {
-      margin-bottom: 10px;
-    }
+    .section ul li { margin-bottom: 10px; }
     #rituals {
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://thumbs.dreamstime.com/z/buddhist-wall-painting-golden-temple-sri-lanka-11447965.jpg') center center/cover no-repeat;
-      color: white;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('https://thumbs.dreamstime.com/z/buddhist-wall-painting-golden-temple-sri-lanka-11447965.jpg') center/cover;
+      color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
     }
     .gallery-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      grid-gap: 20px;
-      max-width: 1200px;
-      margin: 40px auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 20px; max-width: 1200px; margin: 40px auto;
     }
     .gallery-item {
-      overflow: hidden;
-      border-radius: 10px;
+      overflow: hidden; border-radius: 10px; transition: transform 0.3s;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
     }
-    .gallery-item:hover {
-      transform: scale(1.03);
-    }
+    .gallery-item:hover { transform: scale(1.03); }
     .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
-    footer {
-      background-color: #2a4d69;
-      color: #fff;
-      text-align: center;
-      padding: 30px 20px;
-      position: relative;
+    .calendar-container {
+      max-width: 800px; margin: 0 auto; border-radius: 15px;
+      background: var(--section-bg); box-shadow: var(--box-shadow);
+      overflow: hidden;
     }
-    footer .social-links {
-      margin: 20px 0;
+    .calendar-header {
+      background-color: #2a4d69; color: white; padding: 20px;
+      text-align: center; font-size: 1.5rem;
     }
-    footer .social-links a {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
-      border-radius: 50%;
-      background-color: #fff;
-      color: #2a4d69;
-      margin: 0 10px;
-      transition: all 0.3s;
+    [data-theme="dark"] .calendar-header { background-color: #184a7a; }
+    .calendar-table {
+      width: 100%; border-collapse: collapse;
     }
-    footer .social-links a:hover {
-      background-color: #f76c6c;
-      color: #fff;
+    .calendar-table th, .calendar-table td {
+      padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color);
     }
-    /* Donation Section Styles */
+    .calendar-date {
+      font-weight: bold; color: var(--title-color);
+    }
+    .calendar-event {
+      font-weight: bold; color: var(--accent-color);
+    }
+    .calendar-row:hover {
+      background-color: rgba(128,128,128,0.1);
+    }
+    .calendar-icon {
+      display: inline-block; width: 30px; height: 30px; line-height: 30px;
+      text-align: center; background-color: var(--accent-color);
+      color: white; border-radius: 50%; margin-right: 10px;
+    }
     #donation {
-      background-color: #f3f7f9;
-      border-radius: 15px;
-      padding: 50px 30px;
-      max-width: 800px;
-      margin: 60px auto;
-      box-shadow: 0 10px 20px rgba(42, 77, 105, 0.2);
-      position: relative;
+      background-color: var(--donation-bg); border-radius: 15px;
+      padding: 50px 30px; max-width: 800px; margin: 60px auto;
+      box-shadow: var(--box-shadow); position: relative;
     }
     #donation:before {
-      content: '';
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 40px;
-      background-color: #f76c6c;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 20px;
+      content: ''; position: absolute; top: -20px; left: 50%;
+      transform: translateX(-50%); width: 40px; height: 40px;
+      background-color: var(--accent-color); border-radius: 50%;
     }
-    html[data-theme="dark"] #donation {
-      background-color: #2c3e50;
-      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
-    }
-    #donation h2 {
-      color: #2a4d69;
-      margin-bottom: 30px;
-    }
-    html[data-theme="dark"] #donation h2 {
-      color: #87c2ff;
-    }
-    #donation p {
-      font-size: 1.15rem;
-      margin-bottom: 20px;
-    }
+    #donation h2 { color: var(--title-color); margin-bottom: 30px; }
+    #donation p { font-size: 1.15rem; margin-bottom: 20px; }
     #donation ul {
-      max-width: 700px;
-      margin: 0 auto 30px auto;
-      font-size: 1.1rem;
-      text-align: left;
-      padding-left: 30px;
-      list-style-type: none;
+      max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem;
+      text-align: left; padding-left: 30px; list-style-type: none;
     }
     #donation ul li {
-      margin-bottom: 15px;
-      position: relative;
-      padding-left: 30px;
+      margin-bottom: 15px; position: relative; padding-left: 30px;
     }
     #donation ul li:before {
-      content: '\f058';
-      font-family: 'Font Awesome 5 Free';
-      font-weight: 900;
-      position: absolute;
-      left: 0;
-      color: #f76c6c;
+      content: '\f058'; font-family: 'Font Awesome 5 Free';
+      font-weight: 900; position: absolute; left: 0;
+      color: var(--accent-color);
     }
     #donation form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      align-items: center;
-      max-width: 400px;
-      margin: 0 auto;
+      display: flex; flex-direction: column; gap: 20px;
+      align-items: center; max-width: 400px; margin: 0 auto;
     }
     #donation input[type="number"] {
-      padding: 12px 15px;
-      font-size: 1.1rem;
-      width: 100%;
-      border: 2px solid #ccc;
-      border-radius: 8px;
-      text-align: center;
+      padding: 12px 15px; font-size: 1.1rem; width: 100%;
+      border: 2px solid #ccc; border-radius: 8px; text-align: center;
       transition: all 0.3s;
     }
     #donation input[type="number"]:focus {
-      border-color: #f76c6c;
-      outline: none;
-      box-shadow: 0 0 8px rgba(247, 108, 108, 0.5);
+      border-color: var(--accent-color); outline: none;
+      box-shadow: 0 0 8px rgba(247,108,108,0.5);
     }
     #donation button {
-      background-color: #f76c6c;
-      color: white;
-      border: none;
-      padding: 15px 40px;
-      font-size: 1.2rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.3s;
-      width: 100%;
-      font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 8px rgba(247, 108, 108, 0.5);
+      background-color: var(--accent-color); color: white; border: none;
+      padding: 15px 40px; font-size: 1.2rem; border-radius: 30px;
+      cursor: pointer; transition: all 0.3s; width: 100%;
+      font-weight: bold; letter-spacing: 1px;
+      box-shadow: 0 4px 8px rgba(247,108,108,0.5);
     }
     #donation button:hover {
-      background-color: #d45555;
-      transform: translateY(-3px);
+      background-color: #d45555; transform: translateY(-3px);
     }
-    /* Location Map */
     #location iframe {
-      border: 0;
-      width: 100%;
-      max-width: 800px;
-      height: 450px;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(42, 77, 105, 0.2);
-      margin: 30px auto 0 auto;
-      display: block;
+      border: 0; width: 100%; max-width: 800px; height: 450px;
+      border-radius: 15px; box-shadow: 0 10px 20px rgba(42,77,105,0.2);
+      margin: 30px auto 0; display: block;
     }
-    /* Calendar Styles */
-    #calendar {
-      background-color: #f9f9f9;
-      padding: 80px 20px;
-    }
-    html[data-theme="dark"] #calendar {
-      background-color: #1e1e1e;
-    }
-    .calendar-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(42, 77, 105, 0.2);
-      overflow: hidden;
-    }
-    html[data-theme="dark"] .calendar-container {
-      background: #2c3e50;
-      box-shadow: 0 10px 20px rgba(135, 194, 255, 0.2);
-    }
-    .calendar-header {
-      background-color: #2a4d69;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 1.5rem;
-    }
-    html[data-theme="dark"] .calendar-header {
-      background-color: #184a7a;
-    }
-    .calendar-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .calendar-table th, .calendar-table td {
-      padding: 15px;
-      text-align: left;
-      border-bottom: 1px solid #eee;
-    }
-    html[data-theme="dark"] .calendar-table th, html[data-theme="dark"] .calendar-table td {
-      border-bottom: 1px solid #4a5a6a;
-    }
-    .calendar-date {
-      font-weight: bold;
-      color: #2a4d69;
-    }
-    html[data-theme="dark"] .calendar-date {
-      color: #87c2ff;
-    }
-    .calendar-event {
-      font-weight: bold;
-      color: #f76c6c;
-    }
-    .calendar-row:hover {
-      background-color: #f5f5f5;
-    }
-    html[data-theme="dark"] .calendar-row:hover {
-      background-color: #395069;
-    }
-    .calendar-icon {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-      background-color: #f76c6c;
-      color: white;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-    /* Contact styles */
     .contact-info {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 30px;
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 30px; margin-top: 30px;
     }
     .contact-card {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      padding: 25px;
-      width: 250px;
-      text-align: center;
-      transition: transform 0.3s;
+      background-color: var(--section-bg); border-radius: 10px;
+      box-shadow: var(--box-shadow); padding: 25px; width: 250px;
+      text-align: center; transition: transform 0.3s;
     }
-    html[data-theme="dark"] .contact-card {
-      background-color: #2c3e50;
-      box-shadow: 0 5px 15px rgba(255,255,255,0.1);
-    }
-    .contact-card:hover {
-      transform: translateY(-10px);
-    }
+    .contact-card:hover { transform: translateY(-10px); }
     .contact-icon {
-      font-size: 2rem;
-      color: #f76c6c;
-      margin-bottom: 15px;
+      font-size: 2rem; color: var(--accent-color); margin-bottom: 15px;
     }
     .contact-card h3 {
-      margin-bottom: 10px;
-      color: #2a4d69;
+      margin-bottom: 10px; color: var(--title-color);
     }
-    html[data-theme="dark"] .contact-card h3 {
-      color: #87c2ff;
+    footer {
+      background-color: #2a4d69; color: #fff; text-align: center;
+      padding: 30px 20px;
     }
-    .contact-card p {
-      font-size: 1rem;
+    footer .social-links { margin: 20px 0; }
+    footer .social-links a {
+      display: inline-block; width: 40px; height: 40px;
+      line-height: 40px; border-radius: 50%; margin: 0 10px;
+      background-color: #fff; color: #2a4d69; transition: all 0.3s;
     }
-    /* Responsive styles */
+    footer .social-links a:hover {
+      background-color: var(--accent-color); color: #fff;
+    }
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        padding: 10px;
-      }
-      .logo {
-        margin-bottom: 15px;
-      }
-      nav {
-        flex-direction: column;
-        align-items: center;
-      }
-      nav a {
-        margin: 5px 0;
-      }
+      header { flex-direction: column; padding: 10px; }
+      .logo { margin-bottom: 15px; }
+      nav { flex-direction: column; align-items: center; }
+      nav a { margin: 5px 0; }
       .hero-text h1 { font-size: 2.2rem; }
-      .section {
-        padding: 40px 15px;
-      }
-      #donation {
-        margin: 20px 10px;
-        padding: 30px 15px;
-      }
-      .calendar-table th, .calendar-table td {
-        padding: 10px;
-      }
-      .gallery-container {
-        grid-template-columns: 1fr;
-      }
-      .contact-card {
-        width: 100%;
-      }
+      .section { padding: 40px 15px; }
+      #donation { margin: 20px 10px; padding: 30px 15px; }
+      .calendar-table th, .calendar-table td { padding: 10px; }
+      .gallery-container { grid-template-columns: 1fr; }
+      .contact-card { width: 100%; }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <i class="fas fa-om"></i>
-      Bimbarama Temple
-    </div>
+    <div class="logo"><i class="fas fa-dharmachakra"></i> Bimbarama Temple</div>
     <nav>
       <a href="#about">About</a>
       <a href="#history">History</a>
       <a href="#architecture">Architecture</a>
-      <a href="#community">Monastic Community</a>
+      <a href="#community">Community</a>
       <a href="#rituals">Rituals</a>
       <a href="#gallery">Gallery</a>
       <a href="#events">Events</a>
       <a href="#calendar">Calendar</a>
       <a href="#location">Location</a>
-      <a href="#visitor">Visitor Info</a>
+      <a href="#visitor">Visitor</a>
       <a href="#contact">Contact</a>
       <span class="theme-toggle" onclick="toggleTheme()">
         <i id="theme-icon" class="fas fa-moon"></i>
@@ -562,9 +314,9 @@
     <ul>
       <li><strong>Vesak:</strong> Celebrates the Buddha's birth, enlightenment, and parinibbāna. Lanterns, sermons, and Sil observance mark this day.</li>
       <li><strong>Poson:</strong> Commemorates the arrival of Arahant Mahinda and Buddhism in Sri Lanka. Celebrated with pilgrimages and Dhamma activities.</li>
-      <li><strong>Blood Donation Drive (Poson Poya Day):</strong> Community blood donation events are organized at the temple to support local hospitals and encourage generosity and compassion.</li>
-      <li><strong>Asalha Pūjā:</strong> Marks the Buddha's first sermon (Dhammacakkappavattana Sutta). Special sermons and discussions are held.</li>
-      <li><strong>Vassāna (Rainy Retreat):</strong> A three-month retreat for monks during the rainy season, with increased meditation and teachings.</li>
+      <li><strong>Blood Donation Drive:</strong> Community blood donation events are organized at the temple to support local hospitals.</li>
+      <li><strong>Asalha Pūjā:</strong> Marks the Buddha's first sermon. Special sermons and discussions are held.</li>
+      <li><strong>Vassāna:</strong> A three-month retreat for monks during the rainy season, with increased meditation and teachings.</li>
       <li><strong>Katina Ceremony:</strong> Held at the end of Vassāna – Lay devotees offer robes to monks as an act of merit.</li>
       <li><strong>Poya Observances:</strong> Monthly full-moon day observances with Sil programs, chanting, and Dhamma talks.</li>
       <li><strong>Sunday Dhamma School:</strong> Weekly classes for children and youth on Buddhist values, chanting, and ethics.</li>
@@ -573,7 +325,7 @@
 
   <section class="section" id="calendar">
     <h2>Religious Calendar</h2>
-    <p>The Buddhist calendar at Bimbarama follows lunar cycles. Poya days mark important observances such as Vesak, Poson, and others. Below are some upcoming significant dates:</p>
+    <p>The Buddhist calendar at Bimbarama follows lunar cycles. Below are some upcoming significant dates:</p>
     
     <div class="calendar-container">
       <div class="calendar-header">
@@ -615,7 +367,7 @@
                 2025-07-15 to 2025-10-15
               </div>
             </td>
-            <td><span class="calendar-event">Vassāna (Rainy Retreat)</span></td>
+            <td><span class="calendar-event">Vassāna</span></td>
             <td>A three-month retreat for monks during the rainy season.</td>
           </tr>
           <tr class="calendar-row">
@@ -645,17 +397,11 @@
 
   <section class="section" id="location">
     <h2>Location</h2>
-    <p>Bimbarama Temple is located in the peaceful village of Elukatiya, Ahangama in the Southern Province of Sri Lanka. Visitors can find us here:</p>
+    <p>Bimbarama Temple is located in the peaceful village of Elukatiya, Ahangama in the Southern Province of Sri Lanka.</p>
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.1234567890123!2d80.39999999999999!3d6.1654321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259ac3456789b%3A0x9cba123456789abc!2sBimbarama%20Temple!5e0!3m2!1sen!2slk!4v1614678912345!5m2!1sen!2slk"
-      width="600"
-      height="450"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      aria-label="Map showing Bimbarama Temple location"
-    ></iframe>
+      loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      aria-label="Map showing Bimbarama Temple location"></iframe>
   </section>
 
   <section class="section" id="visitor">
@@ -667,23 +413,17 @@
     <h2>Contact Us</h2>
     <div class="contact-info">
       <div class="contact-card">
-        <div class="contact-icon">
-          <i class="fas fa-envelope"></i>
-        </div>
+        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
         <h3>Email</h3>
         <p>info@bimbaramatemple.lk</p>
       </div>
       <div class="contact-card">
-        <div class="contact-icon">
-          <i class="fas fa-phone-alt"></i>
-        </div>
+        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
         <h3>Phone</h3>
         <p>+94 0779905500</p>
       </div>
       <div class="contact-card">
-        <div class="contact-icon">
-          <i class="fas fa-map-marker-alt"></i>
-        </div>
+        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
         <h3>Address</h3>
         <p>Elukatiya, Ahangama, Southern Province, Sri Lanka</p>
       </div>
@@ -692,8 +432,7 @@
 
   <section class="section" id="donation">
     <h2>Support the Temple</h2>
-    <p>Your generous donations help maintain Bimbarama Temple and support our spiritual and educational activities. Contributions assist with temple upkeep, meditation programs, Dhamma education, community outreach, and festival celebrations.</p>
-    <p>You can donate via the form below or through the following methods:</p>
+    <p>Your generous donations help maintain Bimbarama Temple and support our spiritual and educational activities.</p>
     <ul>
       <li><strong>Bank Transfer:</strong> Account Name: Bimbarama Temple, Account No: 123456789, Bank: National Bank of Sri Lanka</li>
       <li><strong>Mobile Payments:</strong> Pay via eZ Cash or mCash to 0779905500</li>
@@ -701,19 +440,8 @@
     </ul>
     <form onsubmit="handleDonation(event)" aria-label="Donation form">
       <label for="donation-amount">Donation Amount (LKR):</label>
-      <input
-        type="number"
-        id="donation-amount"
-        name="donation-amount"
-        min="100"
-        step="100"
-        placeholder="100"
-        required
-        aria-required="true"
-      />
-      <button type="submit">
-        <i class="fas fa-heart"></i> Donate Now
-      </button>
+      <input type="number" id="donation-amount" name="donation-amount" min="100" step="100" placeholder="100" required aria-required="true">
+      <button type="submit"><i class="fas fa-heart"></i> Donate Now</button>
     </form>
   </section>
 
@@ -728,44 +456,26 @@
   </footer>
 
   <script>
-    // Theme toggle with persistence
     function toggleTheme() {
       const html = document.documentElement;
       const currentTheme = html.getAttribute('data-theme');
-      if (currentTheme === 'light') {
-        html.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        document.getElementById('theme-icon').className = 'fas fa-sun';
-      } else {
-        html.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        document.getElementById('theme-icon').className = 'fas fa-moon';
-      }
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      document.getElementById('theme-icon').className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
     }
-    // Load theme on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      document.getElementById('theme-icon').className =
-        savedTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-      startClock();
-    });
-
-    // Digital clock display
+    
     function startClock() {
       const clock = document.getElementById('digital-clock');
       function updateClock() {
         const now = new Date();
-        const h = String(now.getHours()).padStart(2, '0');
-        const m = String(now.getMinutes()).padStart(2, '0');
-        const s = String(now.getSeconds()).padStart(2, '0');
-        clock.textContent = `${h}:${m}:${s}`;
+        clock.textContent = [now.getHours(), now.getMinutes(), now.getSeconds()]
+          .map(n => String(n).padStart(2, '0')).join(':');
       }
       updateClock();
       setInterval(updateClock, 1000);
     }
-
-    // Handle donation form submission (just alert for demo)
+    
     function handleDonation(event) {
       event.preventDefault();
       const amount = document.getElementById('donation-amount').value;
@@ -776,6 +486,13 @@
         alert('Please enter a valid donation amount of at least 100 LKR.');
       }
     }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.getElementById('theme-icon').className = savedTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+      startClock();
+    });
   </script>
 </body>
 </html>
